@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.markswendsen-code/ubereats",
-  "description": "Uber Eats MCP server — search restaurants, browse menus, order food delivery, and track orders. By Strider Labs.",
+  "description": "Uber Eats MCP server \u2014 search restaurants, browse menus, order food delivery, and track orders.",
   "repository": {
     "url": "https://github.com/markswendsen-code/mcp-ubereats",
     "source": "github"
