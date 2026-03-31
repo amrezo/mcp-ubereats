@@ -4,7 +4,7 @@
  * Handles cookie persistence and login state detection.
  * Cookies stored at ~/.strider/ubereats/cookies.json
  */
-import type { BrowserContext } from "playwright";
+import type { BrowserContext } from "patchright";
 export interface AuthState {
     isLoggedIn: boolean;
     email?: string;

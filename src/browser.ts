@@ -5,7 +5,8 @@
  * Runs headless by default with stealth patches to avoid detection.
  */
 
-import { chromium, Browser, BrowserContext, Page } from "playwright";
+import { chromium } from "patchright";
+import type { Browser, BrowserContext, Page, Route } from "patchright";
 import { saveCookies, loadCookies, getAuthState, AuthState } from "./auth.js";
 
 const UBEREATS_BASE_URL = "https://www.ubereats.com";
@@ -105,7 +106,7 @@ async function initBrowser(): Promise<void> {
   page = await context.newPage();
 
   // Block unnecessary resources for speed
-  await page.route("**/*.{png,jpg,jpeg,gif,svg,woff,woff2,mp4,webp}", (route) =>
+  await page.route("**/*.{png,jpg,jpeg,gif,svg,woff,woff2,mp4,webp}", (route: Route) =>
     route.abort()
   );
 }
@@ -355,7 +356,7 @@ export async function searchRestaurants(
             name: name.trim(),
             cuisine: cuisineText
               .split(/[,•·]/)
-              .map((c) => c.trim())
+              .map((c: string) => c.trim())
               .filter(Boolean),
             rating: parseFloat(ratingText.replace(/[^0-9.]/g, "")) || 0,
             deliveryTime: deliveryTimeText.trim(),
@@ -597,7 +598,7 @@ export async function getRestaurant(restaurantId: string): Promise<{
         name: name.trim(),
         cuisine: cuisineText
           .split(/[,•·]/)
-          .map((c) => c.trim())
+          .map((c: string) => c.trim())
           .filter(Boolean),
         rating: parseFloat(ratingText.replace(/[^0-9.]/g, "")) || 0,
         deliveryTime: deliveryTimeText.trim(),

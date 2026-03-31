@@ -4,7 +4,7 @@
  * Playwright-based automation for Uber Eats operations.
  * Runs headless by default with stealth patches to avoid detection.
  */
-import { chromium } from "playwright";
+import { chromium } from "patchright";
 import { saveCookies, loadCookies, getAuthState } from "./auth.js";
 const UBEREATS_BASE_URL = "https://www.ubereats.com";
 const DEFAULT_TIMEOUT = 30000;

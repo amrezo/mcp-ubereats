@@ -8,7 +8,7 @@
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from "fs";
 import { homedir } from "os";
 import { join } from "path";
-import type { BrowserContext, Cookie } from "playwright";
+import type { BrowserContext, Cookie } from "patchright";
 
 // Cookie storage location as per spec
 const CONFIG_DIR = join(homedir(), ".strider", "ubereats");
@@ -95,7 +95,7 @@ export async function getAuthState(context: BrowserContext): Promise<AuthState> 
 
   // Uber Eats uses these session indicators
   const hasSession = cookies.some(
-    (c) =>
+    (c: Cookie) =>
       c.name === "uev2.id" ||
       c.name === "sid" ||
       c.name === "uev2.tok" ||
@@ -103,7 +103,7 @@ export async function getAuthState(context: BrowserContext): Promise<AuthState> 
   );
 
   const userCookie = cookies.find(
-    (c) => c.name === "uev2.id" || c.name === "sid"
+    (c: Cookie) => c.name === "uev2.id" || c.name === "sid"
   );
 
   if (hasSession || userCookie) {
